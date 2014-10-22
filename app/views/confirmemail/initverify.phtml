@@ -1,0 +1,36 @@
+<?php use Phalcon\Tag as Tag; ?>
+
+<?=$this->view->getVar('breadcrumbs')->render()?>
+
+<h1 class="page-header">Manual email activation</h1>
+
+<?=Tag::form(array($this->view->form->getAction())) ?>
+
+	<div class="form-group">
+		<label for="<?=$this->view->form->get('email')->getName()?>"><?=$this->view->form->get('email')->getLabel()?></label>
+<?=$form->render('email') ?>
+		<span class="help-block">
+<?php
+// TODO: add check if email is already activated
+if ($form->hasMessagesFor($form->get('email')->getName())) {
+	echo $this->view->getVar('escaper')->escapeHtml($form->getMessagesFor($form->get('email')->getName())->offsetGet(0)->getMessage());
+}
+?>
+		</span>
+	</div>
+
+	<div class="form-group">
+		<label>Captcha</label>
+<?=$this->view->captcha->getHtml()?>
+		<span class="help-block">
+<?php
+if ($this->view->captcha->getError()) echo $this->view->captcha->getError();
+?>
+		</span>
+	</div>
+
+	<div class="form-group">
+<?=$this->view->form->render('submit')?>
+	</div>
+
+<?=Tag::endForm ()?>

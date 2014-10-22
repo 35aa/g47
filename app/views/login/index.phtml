@@ -1,0 +1,57 @@
+<?php use Phalcon\Tag as Tag; ?>
+
+<h1 class="page-header">Sign In</h1>
+<?=$this->partial('partials/messages')?>
+
+<?=Tag::form(array($this->view->form->getAction())) ?>
+
+	<div class="form-group">
+		<label for="email">Email address</label>
+<?=$this->view->form->render('email') ?>
+		<span class="help-block">
+			* Please, use only primary email for your account to login.
+		</span>
+		<span class="help-block">
+<?
+if ($this->view->form->hasMessagesFor($this->view->form->get('email')->getName())) {
+	echo $this->view->getVar('escaper')->escapeHtml($this->view->form->getMessagesFor($this->view->form->get('email')->getName())->offsetGet(0)->getMessage());
+}
+?>
+		</span>
+	</div>
+
+	<div class="form-group">
+		<label for="password">Password</label>
+<?=$this->view->form->render('password') ?>
+		<span class="help-block">
+<?
+if ($this->view->form->hasMessagesFor($this->view->form->get('password')->getName())) {
+	echo $this->view->getVar('escaper')->escapeHtml($this->view->form->getMessagesFor($this->view->form->get('password')->getName())->offsetGet(0)->getMessage());
+}
+?>
+		</span>
+	</div>
+
+<? if ($this->view->getVar('captcha')) { ?>
+	<div class="form-group">
+		<label for="captcha">Captcha</label>
+<?=$this->view->captcha->getHtml()?>
+<?if ($this->view->captcha->getError()) {?>
+		<span class="help-block">
+<?=$this->view->captcha->getError()?>
+		</span>
+<? } ?>
+	</div>
+<? } ?>
+
+	<div class="form-group">
+		<label for="remember_me">Remember me</label>
+<?=$this->view->form->render('remember_me') ?>
+	</div>
+
+	<div class="form-group">
+		<a href="/forgotpassword">Forgot password</a>?
+	</div>
+<?=$this->view->form->render('submit') ?>
+
+<?=Tag::endForm ()?>
