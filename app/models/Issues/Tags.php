@@ -2,7 +2,7 @@
 namespace Issues;
 
 class Tags extends \Phalcon\Mvc\Model {
-	protected _filters = array();
+	protected $_filters = array();
 
 	public function initialize() {
 		$this->belongsTo('projects_id', 'projects', 'id');

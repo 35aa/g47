@@ -44,7 +44,7 @@ class LoginController extends \Framework\AbstractController {
 					$this->cookies->setCookies($rememberMe->code);
 				}
 				$this->session->set('auth', new \Auth($user));
-				$this->response->redirect("index/index");
+				$this->response->redirect("issues/index");
 				return;
 			}
 		}

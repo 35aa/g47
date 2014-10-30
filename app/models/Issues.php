@@ -1,7 +1,8 @@
 <?php
 
-class Users extends \Phalcon\Mvc\Model implements \Framework\Paginator\Adapter\DataProviderInterface {
-	protected _filters = array();
+class Issues extends \Phalcon\Mvc\Model implements \Framework\Paginator\Adapter\DataProviderInterface {
+	protected $_filters = array();
+	protected $_page;
 
 	public function initialize() {
 		$this->belongsTo('parent_id', 'issues', 'id');
@@ -19,7 +20,7 @@ class Users extends \Phalcon\Mvc\Model implements \Framework\Paginator\Adapter\D
 	}
 
 	public function getActive() {
-		
+		return $this->find(array('closed IS NULL'));
 	}
 
 	public function addFilter() {
@@ -37,4 +38,8 @@ class Users extends \Phalcon\Mvc\Model implements \Framework\Paginator\Adapter\D
 	public function getPaginate() {
 		
 	}
+
+	public function getCount() {}
+
+	public function getItemsWithOffsetAndLimit($offset = 0, $limit = 0) {}
 }

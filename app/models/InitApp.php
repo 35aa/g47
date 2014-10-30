@@ -92,6 +92,16 @@ class InitApp {
 		else {
 			//Private area resources
 			$userResources = array(
+				'issues' => array('index'),
+				'priorities' => array('index'),
+				'types' => array('index'),
+				'statuses' => array('index'),
+				'projects' => array('index'),
+				'issue' => array('add'),
+				'priority' => array('add'),
+				'type' => array('add'),
+				'status' => array('add'),
+				'project' => array('add'),
 				'profile' => array('index', 'username', 'password', 'email', 'deleteemail', 'setprimaryemail', 'deactivate'),
 				'home' => array('index') );
 

@@ -56,5 +56,5 @@ catch(\Phalcon\Exception $e) {
 	error_log("PhalconException: ". $e->getMessage());
 }
 catch(Exception $e) {
-	error_log("Exception: ". $e->getMessage());
+	error_log("Exception: ". $e->__toString());
 }

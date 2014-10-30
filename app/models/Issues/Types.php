@@ -2,7 +2,7 @@
 namespace Issues;
 
 class Types extends \Phalcon\Mvc\Model implements \Framework\Paginator\Adapter\DataProviderInterface {
-	protected _filters = array();
+	protected $_filters = array();
 
 	public function initialize() {
 		$this->belongsTo('projects_id', 'projects', 'id');
@@ -33,4 +33,8 @@ class Types extends \Phalcon\Mvc\Model implements \Framework\Paginator\Adapter\D
 	public function getPaginate() {
 		
 	}
+
+	public function getCount() {}
+
+	public function getItemsWithOffsetAndLimit($offset = 0, $limit = 0) {}
 }
